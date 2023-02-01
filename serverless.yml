@@ -1,0 +1,26 @@
+service: covid19-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 2048
+  stage: dev
+  timeout: 15
+  region: eu-central-1
+
+functions:
+  app:
+    handler: app.server   
+    events:
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+plugins:
+  - serverless-offline
