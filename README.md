@@ -100,7 +100,7 @@ Here is an example of an __unacceptable__ query parameter:
 ```
 
 
-<a name="healthcheck"></a>
+<a name="examples"></a>
 ## Example Requests
 A `GET` request to 
 ```
