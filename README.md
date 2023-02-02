@@ -42,9 +42,9 @@ returns a list of the COVID-19 cases for all countries from A to Z.
 
 returns the COVID-19 cases for a specific country only. You can specify the country using the
 
-1. Country name, e.g. _/covid/countries/Germany_
-2. ISO 3166-1 alpha-2 country code, e.g. _/covid/countries/de_ for Germany
-2. ISO 3166-1 alpha-3 country code, e.g. _/covid/countries/deu_ for Germany
+1. __country name__, e.g. _/covid/countries/Germany_
+2. ISO 3166-1 alpha-2 __country code__, e.g. _/covid/countries/de_ for Germany
+2. ISO 3166-1 alpha-3 __country code__, e.g. _/covid/countries/deu_ for Germany
 
 The country endpoint path is case-insensitive, e.g. if you used "gerManY", "DE" or "deU", this would work as well.
 
