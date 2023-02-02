@@ -178,7 +178,7 @@ To run the service locally, enter the following command in your Terminal:
 npm run start
 ````
 
-This makes use of the Serverless Offline plugin, which emulates AWS Lambda and API Gateway on your local machine. The Lambda function is now running on your localhost. The default port is 3000. You will see the base URL in the Terminal, too:
+This makes use of the Serverless Offline plugin, which emulates AWS Lambda and API Gateway on your local machine. The Lambda function is now running on your localhost. The default port is 3000. You will see the __base URL__ in the Terminal, too:
 ```
 http://localhost:3000/dev
 ````
