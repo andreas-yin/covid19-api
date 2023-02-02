@@ -5,7 +5,7 @@ __Source:__ It retrieves the information from another public API - [disease.sh](
 
 ### Table of Contents
 * [Access the API (Base URL)](#access) 
-* [Use the API (Endpoints)](#usage)
+* [Use the API (Endpoint Paths)](#usage)
 * [Example Requests](#examples)
 * [Health Check](#healthcheck)
 * [Install and Run Locally](#local)
@@ -25,7 +25,7 @@ https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev
 The API follows the REST standard. It accepts `GET` and `HEAD` requests only. Any other HTTP request method results in a 405 HTTP response (Method Not Allowed). If there is no error, the API responds to `GET` requests with JSON data in the response body.
 \
 \
-To use the API, append one of the following 3 endpoints to the [base URL](#access):
+To use the API, append one of the following 3 endpoint paths to the [base URL](#access):
 
 ### 1. Get COVID-19 Cases for All Countries
 ```
