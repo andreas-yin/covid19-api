@@ -4,7 +4,7 @@ const performHealthcheck = async (req, res, next) => {
         responsetime: process.hrtime(),
         message: 'OK',
         timestamp: Date.now()
-    }
+    };
 
     try {
         res.status(200).json(healthcheck);
