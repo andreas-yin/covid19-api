@@ -160,10 +160,10 @@ To install and run this service locally, you require
 The API depends on the following packages:
 Package                                                                | Version
 ---------------------------------------------------------------------- | -------
-[express](https://www.npmjs.com/package/express)                       | ≥ 4.18.2
-[lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase)     | ≥ 4.3.0
-[serverless-http](https://www.npmjs.com/package/serverless-http)       | ≥ 3.1.1
-[serverless-offline](https://www.npmjs.com/package/serverless-offline) | ≥ 12.0.4
+[express](https://www.npmjs.com/package/express)                       | 4.18.2
+[lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase)     | 4.3.0
+[serverless-http](https://www.npmjs.com/package/serverless-http)       | 3.1.1
+[serverless-offline](https://www.npmjs.com/package/serverless-offline) | 12.0.4
 
 
 Open your Terminal, make sure you are in the project folder of this application and enter the below command to install the above packages:
