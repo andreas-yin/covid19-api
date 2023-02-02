@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {    
+    "start": "serverless offline start",
     "deploy": "serverless deploy"
   },
   "keywords": [],
