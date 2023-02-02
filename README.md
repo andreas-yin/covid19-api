@@ -21,7 +21,7 @@ https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev
 
 
 <a name="usage"></a>
-## Use the API
+## Use the API (Endpoint Paths)
 The API follows the REST standard. It accepts `GET` and `HEAD` requests only. Any other HTTP request method results in a 405 HTTP response (Method Not Allowed). If there is no error, the API responds to `GET` requests with JSON data in the response body.
 \
 \
