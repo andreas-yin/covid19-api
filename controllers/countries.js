@@ -1,4 +1,4 @@
-import getApiData from '../models/diseaseApi.js';
+import getDataFromExternalApi from '../services/index.js';
 import camelCase from 'lodash.camelcase';
 
 const sendData = async (req, res) => {
@@ -7,7 +7,7 @@ const sendData = async (req, res) => {
     let { datapoint } = req.query;
     datapoint = camelCase(datapoint);
 
-    const data = await getApiData(country);
+    const data = await getDataFromExternalApi(country);
 
     /*
     Requests with a query parameter of 'datapoint' following the country 
