@@ -1,5 +1,5 @@
-const getApiData = require('../models/diseaseApi');
-const camelCase = require('lodash.camelcase');
+import getApiData from '../models/diseaseApi.js';
+import camelCase from 'lodash.camelcase';
 
 const sendData = async (req, res) => {
   try {
@@ -25,7 +25,4 @@ const methodNotAllowed = (req, res, next) => {
   res.status(405).set('Allow', 'GET, HEAD').send('Not Acceptable');
 };
 
-module.exports = {
-  sendData,
-  methodNotAllowed,
-};
+export { sendData, methodNotAllowed };

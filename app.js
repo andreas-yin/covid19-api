@@ -1,11 +1,11 @@
-const express = require('express');
-const serverless = require('serverless-http');
-const countriesRouter = require('./routes/countries');
-const healthcheckRouter = require('./routes/healthcheck');
+import express from 'express';
+import serverless from 'serverless-http';
+import countriesRouter from './routes/countries.js';
+import healthcheckRouter from './routes/healthcheck.js';
 
 const app = express();
 
 app.use('/countries', countriesRouter);
 app.use('/healthcheck', healthcheckRouter);
 
-module.exports.server = serverless(app);
+export const server = serverless(app);

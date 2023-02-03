@@ -14,4 +14,4 @@ const performHealthcheck = async (req, res, next) => {
   }
 };
 
-module.exports = performHealthcheck;
+export default performHealthcheck;

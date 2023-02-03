@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "main": "app.js",
-  "scripts": {    
+  "scripts": {
     "start": "serverless offline start",
     "deploy": "serverless deploy"
   },
