@@ -11,7 +11,10 @@ const getDataFromExternalApi = async (country = '') => {
         res.on('end', () => {
           try {
             const parsedData = JSON.parse(data);
-            resolve(parsedData);
+            resolve({
+              statusCode: res.statusCode,
+              data: parsedData,
+            });
           } catch (err) {
             reject(err);
           }
