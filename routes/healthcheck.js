@@ -1,5 +1,5 @@
 const express = require('express');
-const performHealthcheck = require('../controllers/healthcheckController');
+const performHealthcheck = require('../controllers/healthcheck');
 
 const router = express.Router();
 
