@@ -1,6 +1,6 @@
 import https from 'node:https';
 
-const getDataFromExternalApi = async (country = '') => {
+export default getDataFromExternalApi = async (country = '') => {
   return new Promise((resolve, reject) => {
     const url = 'https://disease.sh/v3/covid-19/countries/' + country;
 
@@ -22,5 +22,3 @@ const getDataFromExternalApi = async (country = '') => {
       });
   });
 };
-
-export default getDataFromExternalApi;
