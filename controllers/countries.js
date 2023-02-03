@@ -1,7 +1,18 @@
 import getDataFromExternalApi from '../services/index.js';
 import camelCase from 'lodash.camelcase';
 
-const sendData = async (req, res) => {
+const getCountriesData = async (req, res) => {
+  try {
+    const { country } = req.params;
+    const data = await getDataFromExternalApi(country);
+    console.log(data);
+    res.json(data);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+const getCountryData = async (req, res) => {
   try {
     const { country } = req.params;
     let { datapoint } = req.query;
@@ -25,4 +36,4 @@ const methodNotAllowed = (req, res, next) => {
   res.status(405).set('Allow', 'GET, HEAD').send('Not Acceptable');
 };
 
-export { sendData, methodNotAllowed };
+export { getCountriesData, getCountryData, methodNotAllowed };
