@@ -58,13 +58,15 @@ export const getCountry = async (req, res) => {
       return respondWith500(res);
     }
 
+    const summary = summarize(apiResponse);
+
     // No query parameters
     if (!Object.keys(queryParams).length) {
-      const allDatapoints = {
+      const summaryIncludingCountry = {
         country: apiResponse.data.country,
-        ...summarize(apiResponse),
+        ...summary,
       };
-      return res.json(allDatapoints);
+      return res.json(summaryIncludingCountry);
     }
 
     // Invalid query: query parameter key is not 'datapoint' or more than 1 query parameter
@@ -78,7 +80,7 @@ export const getCountry = async (req, res) => {
 
     // Value for 'datapoint' does not exist
     const camelCasedDatapoint = camelCase(queryParam[1]);
-    if (apiResponse.data[camelCasedDatapoint] === undefined) {
+    if (summary[camelCasedDatapoint] === undefined) {
       return res.status(404).json({ message: MESSAGES.DATAPOINT_NOT_FOUND });
     }
 
