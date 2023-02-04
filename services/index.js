@@ -29,7 +29,7 @@ export const allCountriesApi = async () => {
 };
 
 // Get country-based COVID data from external API
-export const countryApi = async (country = '') => {
+export const countryApi = async (country) => {
   return new Promise((resolve, reject) => {
     const url = 'https://disease.sh/v3/covid-19/countries/' + country;
     httpsGet(resolve, reject, url);

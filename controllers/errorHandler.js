@@ -16,6 +16,7 @@ export const methodNotAllowed = (req, res, next) => {
     .json({ message: METHOD_NOT_ALLOWED });
 };
 
-export const internalServerError = (req, res, next) => {
+export const internalServerError = (err, req, res, next) => {
+  console.error(err);
   return res.status(500).json({ message: INTERNAL_SERVER_ERROR });
 };

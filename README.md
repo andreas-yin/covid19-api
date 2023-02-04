@@ -122,30 +122,80 @@ datapoint:
 \
 returns a summary of the COVID-19 cases worldwide.
 \
-\
+Example response (from February 4, 2023):
+
+```
+{
+    "cases": 676106630,
+    "todayCases": 98996,
+    "deaths": 6770499,
+    "todayDeaths": 539
+}
+```
+
 `GET` http://localhost:3000/dev/countries/swe
 \
 returns a summary of the COVID-19 cases for Sweden.
 \
-\
+Example response (from February 4, 2023):
+
+```
+{
+    "country": "Sweden",
+    "cases": 2694893,
+    "todayCases": 0,
+    "deaths": 23419,
+    "todayDeaths": 0
+}
+```
+
 `GET` http://localhost:3000/dev/countries/japan?datapoint=today-deaths
 \
 returns today's deaths from COVID-19 in Japan.
 \
-\
+Example response (from February 4, 2023):
+
+```
+{
+    "todayDeaths": 256
+}
+```
+
 `GET` http://localhost:3000/dev/countries/blabla
 \
 returns a 404 HTTP response (Country Not Found).
 \
-\
+Example response:
+
+```
+{
+    "message": "Country not found or doesn't have any cases. If you've used a full country name, try an ISO2 or ISO3 country code instead."
+}
+```
+
 `GET` http://localhost:3000/dev/countries/brazil?datapoint=todaycases
 \
 returns a 404 HTTP response (Datapoint Not Found).
 \
-\
+Example response:
+
+```
+{
+    "message": "Datapoint not found. Datapoint value has to be a specific string, 'cases', 'todayCases', 'deaths' or 'todayDeaths'. Camel, Pascal, snake or kebap case or spaces between words required."
+}
+```
+
 `POST` http://localhost:3000/dev/countries/usa
 \
 returns a 405 HTTP response (Method Not Allowed).
+\
+Example response:
+
+```
+{
+    "message": "HTTP request method not allowed. This service only accepts GET and HEAD requests."
+}
+```
 
 <a name="aws"></a>
 
