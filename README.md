@@ -67,12 +67,11 @@ The endpoints follow the REST standard.
 
 ### `/countries`
 
-|                          |                                           |
 | ------------------------ | ----------------------------------------- |
-| **Query parameters**     | N/A                                       |
-| **Allowed HTTP methods** | `GET`, `HEAD`                             |
-| **Response**             | COVID-19 cases for all countries from A-Z |
-| **Response format**      | JSON                                      |
+| **Query parameters** | N/A |
+| **Allowed HTTP methods** | `GET`, `HEAD` |
+| **Response** | COVID-19 cases for all countries from A-Z |
+| **Response format** | JSON |
 
 ### `/countries/{country}`
 
