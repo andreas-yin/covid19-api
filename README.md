@@ -6,164 +6,10 @@ This API provides the latest information on COVID-19 cases. You can query the AP
 
 ### Table of Contents
 
-- [Access the API (Base URL)](#access)
-- [Use the API (Endpoint Paths)](#usage)
-- [Example Requests](#examples)
-- [Health Check](#healthcheck)
 - [Install and Run Locally](#local)
-
-<a name="access"></a>
-
-## Access the API (Base URL)
-
-The API is hosted on **AWS Lambda**. The base URL is:
-
-```
-https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev
-```
-
-<a name="usage"></a>
-
-## Use the API (Endpoint Paths)
-
-The API follows the REST standard. It accepts `GET` and `HEAD` requests only. Any other HTTP request method results in a 405 HTTP response (Method Not Allowed). If there is no error, the API responds to `GET` requests with JSON data in the response body.
-\
-\
-To use the API, append one of the following 3 endpoint paths to the [base URL](#access):
-
-### 1. Get COVID-19 Cases for All Countries
-
-```
-/countries
-```
-
-returns a list of the COVID-19 cases for all countries from A to Z.
-
-### 2. Get COVID-19 Cases for One Specific Country
-
-```
-/countries/<COUNTRY>
-```
-
-returns the COVID-19 cases for a specific country only. You can specify the country using the
-
-1. **country name**, e.g. _/countries/Germany_
-2. ISO 3166-1 alpha-2 **country code**, e.g. _/countries/de_ for Germany
-3. ISO 3166-1 alpha-3 **country code**, e.g. _/countries/deu_ for Germany
-
-The country endpoint path is case-insensitive, e.g. if you used "gerManY", "DE" or "deU", this would work as well.
-
-### 3. Get One Specific Datapoint from a Country's COVID-19 Cases
-
-```
-/countries/<COUNTRY>?datapoint=<QUERY-PARAMETER>
-```
-
-returns one specific datapoint from the COVID-19 cases of a country, e.g. cases, today's cases, deaths or today's deaths.
-
-Here is a list of all available query parameters:
-
-```
-cases
-todayCases
-deaths
-todayDeaths
-recovered
-todayRecovered
-active
-critical
-casesPerOneMillion
-deathsPerOneMillion
-tests
-testsPerOneMillion
-population
-continent
-oneCasePerPeople
-oneDeathPerPeople
-oneTestPerPeople
-activePerOneMillion
-recoveredPerOneMillion
-criticalPerOneMillion
-```
-
-The query parameters use camel casing. Alternatively, you can use dashes or underscores to separate words within a query parameter. In addition, the query parameter becomes case-insensitive when you use dashes or underscores.
-\
-\
-Below are some examples of an acceptable query parameter:
-
-```
-/countries/de?datapoint=Today Deaths
-
-/countries/de?datapoint=today-deaths
-
-/countries/de?datapoint=TODAY_DEATHS
-
-/countries/de?datapoint=todayDeaths
-```
-
-Here is an example of an **unacceptable** query parameter:
-
-```
-/countries/de?datapoint=todaydeaths
-```
-
-<a name="examples"></a>
-
-## Example Requests
-
-A `GET` request to
-
-```
-https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev/countries
-```
-
-will return the COVID-19 cases for all countries from A-Z.
-\
-\
-A `GET` request to
-
-```
-https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev/countries/swe
-```
-
-will return the COVID-19 cases for Sweden.
-\
-\
-A `GET` request to
-
-```
-https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev/countries/japan?datapoint=today-deaths
-```
-
-will return today's deaths from COVID-19 in Japan.
-\
-\
-A `POST` request to
-
-```
-https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev/countries/usa
-```
-
-will return a 405 HTTP response saying "Not Acceptable".
-
-<a name="healthcheck"></a>
-
-## Health Check
-
-To check the API's health, append the following endpoint to the [base URL](#access):
-
-```
-/healthcheck
-```
-
-This returns a JSON object which includes the keys:
-
-1. "uptime"
-2. "responsetime"
-3. "message"
-4. "timestamp"
-
-If the API is healthy, the status code of the HTTP response will be 200 and the message will say "OK".
+- [Endpoints](#endpoints)
+- [Example Requests](#examples)
+- [Use the API Hosted on AWS Lambda](#aws)
 
 <a name="local"></a>
 
@@ -171,7 +17,7 @@ If the API is healthy, the status code of the HTTP response will be 200 and the 
 
 ### Prerequisites
 
-To install and run this service locally, you require
+To install and run the API locally, you require
 
 1. [Node.js](https://nodejs.org/en/) version ≥ 18.13.0
 2. [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version ≥ 8.19.3
@@ -179,12 +25,13 @@ To install and run this service locally, you require
 ### Install Dependencies
 
 The API depends on the following packages:
-Package | Version
----------------------------------------------------------------------- | -------
-[express](https://www.npmjs.com/package/express) | 4.18.2
-[lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase) | 4.3.0
-[serverless-http](https://www.npmjs.com/package/serverless-http) | 3.1.1
-[serverless-offline](https://www.npmjs.com/package/serverless-offline) | 12.0.4
+| Package | Version |
+| ------- | ------- |
+| [express](https://www.npmjs.com/package/express) | 4.18.2 |
+| [lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase) | 4.3.0 |
+| [serverless-http](https://www.npmjs.com/package/serverless-http) | 3.1.1 |
+| [serverless-offline](https://www.npmjs.com/package/serverless-offline) | 12.0.4 |
+| [eslint](https://www.npmjs.com/package/eslint) | 8.33.0 |
 
 Open your Terminal, make sure you are in the project folder of this application and enter the below command to install the above packages:
 
@@ -194,22 +41,126 @@ npm install
 
 ### Run Locally
 
-To run the service locally, enter the following command in your Terminal:
+To run the application locally, enter the following command in your Terminal:
 
 ```
 npm run start
 ```
 
-This makes use of the Serverless Offline plugin, which emulates AWS Lambda and API Gateway on your local machine. The Lambda function is now running on your localhost. The default port is 3000. You will see the **base URL** in the Terminal, too:
+This makes use of the Serverless Offline plugin, which emulates AWS Lambda and API Gateway on your local machine. The Lambda function is now running on your localhost. The default port is 3000.
+
+### Base URL
+
+You'll see the base URL in your Terminal:
 
 ```
 http://localhost:3000/dev
 ```
 
-Now you can start using the API: Append one of the allowed [endpoint paths](#usage) to the base URL, open your web browser and enter the complete URL. E.g.
+Make a request to the API by appending one of the available endpoints to this base URL.
+
+<a name="endpoints"></a>
+
+## Endpoints
+
+The endpoints follow the REST standard.
+
+### `/countries`
+
+|                          |                                           |
+| ------------------------ | ----------------------------------------- |
+| **Query parameters**     | N/A                                       |
+| **Allowed HTTP methods** | `GET`, `HEAD`                             |
+| **Response**             | COVID-19 cases for all countries from A-Z |
+| **Response format**      | JSON                                      |
+
+### `/countries/{country}`
+
+<!-- prettier-ignore -->
+|     |     |
+| --- | --- |
+| **Dynamic path** | `{country}` specifies a country. Acceptable strings:<br>1. **Full country name**, e.g. `Germany`<br>2. **ISO 2-digit country code**, e.g. `de` for Germany<br>3. **ISO 3-digit country code**, e.g. `deu` for Germany<br>`{country}` is treated as case-insensitive. |
+| **Query parameters**     | Only 1 query parameter of `datapoint: string` allowed.<br>The key `datapoint` is treated as case-insensitive.<br>Only certain strings accepted as a value for `datapoint` (e.g. `todayCases` or `todayDeaths`).<br>The value string for `datapoint` has to be in camel, Pascal, snake or kebap case.<br> |
+| **Allowed HTTP methods** | `GET`, `HEAD`                                                           |
+| **Response**             | COVID-19 cases (or one single datapoint thereof) for a specific country |
+| **Response format**      | JSON                                                                    |
+| **Common errors**        | The **country can't be found** or there is no data available for this country (HTTP 404). Please use an ISO country code instead and try again.<br>The value for datapoint is in lowercase, so the **datapoint can't be found** (HTTP 404). Please use camel, Pascal, snake or kebap case and try again. |
+
+Here is a list of acceptable string values for the `datapoint` query parameter:
 
 ```
-http://localhost:3000/dev/countries/de?datapoint=cases
+datapoint:
+| "cases"
+| "todayCases"
+| "deaths"
+| "todayDeaths"
+| "recovered"
+| "todayRecovered"
+| "active"
+| "critical"
+| "casesPerOneMillion"
+| "deathsPerOneMillion"
+| "tests"
+| "testsPerOneMillion"
+| "population"
+| "continent"
+| "oneCasePerPeople"
+| "oneDeathPerPeople"
+| "oneTestPerPeople"
+| "activePerOneMillion"
+| "recoveredPerOneMillion"
+| "criticalPerOneMillion"
 ```
 
-This will return a single datapoint - all COVID-19 cases there have been in Germany.
+### `/healthcheck`
+
+<!-- prettier-ignore -->
+|                          |               |
+| ------------------------ | ------------- |
+| **Query parameters**     | N/A           |
+| **Allowed HTTP methods** | `GET`, `HEAD` |
+| **Response**             | Information about the API's health: `uptime`, `runtime`, `message` and `timestamp`. If the API is healthy, you'll receive a `message: "OK"`. |
+| **Response format**      | JSON          |
+
+<a name="examples"></a>
+
+## Example Requests
+
+`GET` http://localhost:3000/dev/countries
+\
+returns the COVID-19 cases for all countries from A-Z.
+\
+\
+`GET` http://localhost:3000/dev/countries/swe
+\
+returns the COVID-19 cases for Sweden.
+\
+\
+`GET` http://localhost:3000/dev/countries/japan?datapoint=today-deaths
+\
+returns today's deaths from COVID-19 in Japan.
+\
+\
+`GET` http://localhost:3000/dev/countries/blabla
+\
+returns a 404 HTTP response (Country Not Found).
+\
+\
+`GET` http://localhost:3000/dev/countries/brazil?datapoint=todaycases
+\
+returns a 404 HTTP response (Datapoint Not Found).
+\
+\
+`POST` http://localhost:3000/dev/countries/usa
+\
+returns a 405 HTTP response (Method Not Allowed).
+
+<a name="aws"></a>
+
+## Use the API Hosted on AWS Lambda
+
+This API has been deployed to AWS Lambda. To use the service, replace http://localhost:3000/dev with the following **base URL**:
+
+```
+https://abqqizmjxf.execute-api.eu-central-1.amazonaws.com/dev
+```

@@ -27,7 +27,7 @@ const getCountryData = async (req, res) => {
   try {
     const { country } = req.params;
 
-    // Covert all query parameter keys to lower case
+    // Covert all query parameter keys to lowercase
     const queryParams = Object.fromEntries(
       Object.entries(req.query).map(([key, value]) => [
         key.toLowerCase(),
