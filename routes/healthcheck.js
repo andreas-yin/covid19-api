@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getHealthcheck } from '../controllers/healthcheck.js';
-import { methodNotAllowed } from '../controllers/methodNotAllowed.js';
+import { methodNotAllowed } from '../controllers/errorHandler.js';
 
 export const healthcheckRouter = Router();
 

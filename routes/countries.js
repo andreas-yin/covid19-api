@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getCountries, getCountry } from '../controllers/countries.js';
-import { methodNotAllowed } from '../controllers/methodNotAllowed.js';
+import { methodNotAllowed } from '../controllers/errorHandler.js';
 
 export const countriesRouter = Router();
 
