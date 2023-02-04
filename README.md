@@ -31,6 +31,7 @@ The API depends on the following packages:
 | [lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase) | 4.3.0 |
 | [serverless-http](https://www.npmjs.com/package/serverless-http) | 3.1.1 |
 | [serverless-offline](https://www.npmjs.com/package/serverless-offline) | 12.0.4 |
+| [prettier](https://www.npmjs.com/package/prettier) | 2.8.3 |
 | [eslint](https://www.npmjs.com/package/eslint) | 8.33.0 |
 
 Open your Terminal, make sure you are in the project folder of this application and enter the below command to install the above packages:

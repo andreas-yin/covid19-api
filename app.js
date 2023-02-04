@@ -1,8 +1,8 @@
 import express from 'express';
 import serverless from 'serverless-http';
-import countriesRouter from './routes/countries.js';
-import healthcheckRouter from './routes/healthcheck.js';
-import otherRouter from './routes/other.js';
+import { router as countriesRouter } from './routes/countries.js';
+import { router as healthcheckRouter } from './routes/healthcheck.js';
+import { router as otherRouter } from './routes/other.js';
 
 const app = express();
 

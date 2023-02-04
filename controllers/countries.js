@@ -1,29 +1,28 @@
-import getDataFromExternalApi from '../services/index.js';
+import { getDataFromExternalApi } from '../services/index.js';
 import camelCase from 'lodash.camelcase';
-import messages from '../utils/messages.js';
+import * as MESSAGES from '../constants/messages.js';
 
-// Helper
-const respondWith503 = (res) => {
-  res.status(503).json({
-    message: messages['unavailable'],
+const respondWith500 = (res) => {
+  res.status(500).json({
+    message: MESSAGES.INTERNAL_SERVER_ERROR,
   });
 };
 
-const getCountriesData = async (req, res) => {
+export const getCountriesData = async (req, res) => {
   try {
     const apiResponse = await getDataFromExternalApi();
 
     // Service unavailable if external API returns any errors
     if (apiResponse.statusCode !== 200) {
-      return respondWith503(res);
+      return respondWith500(res);
     }
     return res.json(apiResponse.data);
   } catch {
-    return respondWith503(res);
+    return respondWith500(res);
   }
 };
 
-const getCountryData = async (req, res) => {
+export const getCountryData = async (req, res) => {
   try {
     const { country } = req.params;
 
@@ -39,10 +38,10 @@ const getCountryData = async (req, res) => {
 
     // External API cannot find country
     if (apiResponse.statusCode === 404) {
-      return res.status(404).json({ message: messages['countryNotFound'] });
+      return res.status(404).json({ message: MESSAGES.COUNTRY_NOT_FOUND });
     } else if (apiResponse.statusCode !== 200) {
       // Any other error from external API
-      return respondWith503(res);
+      return respondWith500(res);
     }
 
     // No query parameters
@@ -56,19 +55,17 @@ const getCountryData = async (req, res) => {
       queryParam[0] !== 'datapoint' ||
       Object.keys(queryParams).length !== 1
     ) {
-      return res.status(400).json({ message: messages['invalidQuery'] });
+      return res.status(400).json({ message: MESSAGES.INVALID_QUERY });
     }
 
     // Value for 'datapoint' does not exist
     const camelCasedDatapoint = camelCase(queryParam[1]);
     if (apiResponse.data[camelCasedDatapoint] === undefined) {
-      return res.status(404).json({ message: messages['datapointNotFound'] });
+      return res.status(404).json({ message: MESSAGES.DATAPOINT_NOT_FOUND });
     }
 
     res.json({ [camelCasedDatapoint]: apiResponse.data[camelCasedDatapoint] });
   } catch {
-    return respondWith503(res);
+    return respondWith500(res);
   }
 };
-
-export { getCountriesData, getCountryData };

@@ -1,11 +1,9 @@
-import messages from '../utils/messages.js';
+import { METHOD_NOT_ALLOWED } from '../constants/messages.js';
 
-const methodNotAllowed = (req, res, next) => {
+export const methodNotAllowed = (req, res, next) => {
   // Only GET and HEAD requests allowed
   return res
     .status(405)
     .set('Allow', 'GET, HEAD')
-    .json({ message: messages['methodNotAllowed'] });
+    .json({ message: METHOD_NOT_ALLOWED });
 };
-
-export default methodNotAllowed;

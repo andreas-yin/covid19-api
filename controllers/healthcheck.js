@@ -1,4 +1,4 @@
-const performHealthcheck = async (req, res, next) => {
+export const getHealthcheck = async (req, res, next) => {
   const healthcheck = {
     uptime: process.uptime(),
     responsetime: process.hrtime(),
@@ -10,8 +10,6 @@ const performHealthcheck = async (req, res, next) => {
     res.status(200).json(healthcheck);
   } catch (err) {
     healthcheck.message = err;
-    res.status(503).json(healthcheck);
+    res.status(500).json(healthcheck);
   }
 };
-
-export default performHealthcheck;
