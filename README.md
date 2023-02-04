@@ -80,11 +80,11 @@ The endpoints follow the REST standard.
 |     |     |
 | --- | --- |
 | **Dynamic path** | `{country}` specifies a country. Acceptable strings:<br>1. **Full country name**, e.g. `Germany`<br>2. **ISO 2-digit country code**, e.g. `de` for Germany<br>3. **ISO 3-digit country code**, e.g. `deu` for Germany<br>`{country}` is treated as case-insensitive. |
-| **Query parameters**     | Only 1 query parameter of `datapoint: string` allowed.<br>The key `datapoint` is treated as case-insensitive.<br>Only certain strings accepted as a value for `datapoint` (e.g. `todayCases` or `todayDeaths`).<br>The value string for `datapoint` has to be in camel, Pascal, snake or kebap case.<br> |
+| **Query parameters**     | Only 1 query parameter of `datapoint: string` allowed.<br>The key `datapoint` is treated as case-insensitive.<br>Only certain strings accepted as a value for `datapoint` (e.g. `todayCases` or `todayDeaths`).<br>The value string for `datapoint` has to be in camel, Pascal, snake or kebap case or use spaces between words.<br> |
 | **Allowed HTTP methods** | `GET`, `HEAD`                                                           |
 | **Response**             | COVID-19 cases (or one single datapoint thereof) for a specific country |
 | **Response format**      | JSON                                                                    |
-| **Common errors**        | The **country can't be found** or there is no data available for this country (HTTP 404). Please use an ISO country code instead and try again.<br>The value for datapoint is in lowercase, so the **datapoint can't be found** (HTTP 404). Please use camel, Pascal, snake or kebap case and try again. |
+| **Common errors**        | The **country can't be found** or there is no data available for this country (HTTP 404). Please use an ISO country code instead and try again.<br>The value for datapoint is in lowercase, so the **datapoint can't be found** (HTTP 404). Please use camel, Pascal, snake or kebap case or spaces between words and try again. |
 
 Here is a list of acceptable string values for the `datapoint` query parameter:
 
