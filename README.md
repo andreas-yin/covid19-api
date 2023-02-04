@@ -57,7 +57,7 @@ You'll see the base URL in your Terminal:
 http://localhost:3000/dev
 ```
 
-Make a request to the API by appending one of the available endpoints to this base URL.
+Make a request to the API by appending one of the available [endpoints](#endpoints) to this base URL.
 
 <a name="endpoints"></a>
 
