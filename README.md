@@ -122,7 +122,7 @@ datapoint:
 \
 returns a summary of the COVID-19 cases worldwide.
 \
-Example response (from February 4, 2023):
+**Example response** (from February 4, 2023):
 
 ```
 {
@@ -137,7 +137,7 @@ Example response (from February 4, 2023):
 \
 returns a summary of the COVID-19 cases for Sweden.
 \
-Example response (from February 4, 2023):
+**Example response** (from February 4, 2023):
 
 ```
 {
@@ -153,7 +153,7 @@ Example response (from February 4, 2023):
 \
 returns today's deaths from COVID-19 in Japan.
 \
-Example response (from February 4, 2023):
+**Example response** (from February 4, 2023):
 
 ```
 {
@@ -165,7 +165,7 @@ Example response (from February 4, 2023):
 \
 returns a 404 HTTP response (Country Not Found).
 \
-Example response:
+**Example response**:
 
 ```
 {
@@ -177,7 +177,7 @@ Example response:
 \
 returns a 404 HTTP response (Datapoint Not Found).
 \
-Example response:
+**Example response**:
 
 ```
 {
@@ -189,7 +189,7 @@ Example response:
 \
 returns a 405 HTTP response (Method Not Allowed).
 \
-Example response:
+**Example response**:
 
 ```
 {
