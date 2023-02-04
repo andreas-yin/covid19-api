@@ -133,9 +133,6 @@ Example response (from February 4, 2023):
 }
 ```
 
-\
-\
-
 `GET` http://localhost:3000/dev/countries/swe
 \
 returns a summary of the COVID-19 cases for Sweden.
@@ -152,9 +149,6 @@ Example response (from February 4, 2023):
 }
 ```
 
-\
-\
-
 `GET` http://localhost:3000/dev/countries/japan?datapoint=today-deaths
 \
 returns today's deaths from COVID-19 in Japan.
@@ -166,9 +160,6 @@ Example response (from February 4, 2023):
     "todayDeaths": 256
 }
 ```
-
-\
-\
 
 `GET` http://localhost:3000/dev/countries/blabla
 \
@@ -182,9 +173,6 @@ Example response:
 }
 ```
 
-\
-\
-
 `GET` http://localhost:3000/dev/countries/brazil?datapoint=todaycases
 \
 returns a 404 HTTP response (Datapoint Not Found).
@@ -196,9 +184,6 @@ Example response:
     "message": "Datapoint not found. Datapoint value has to be a specific string, 'cases', 'todayCases', 'deaths' or 'todayDeaths'. Camel, Pascal, snake or kebap case or spaces between words required."
 }
 ```
-
-\
-\
 
 `POST` http://localhost:3000/dev/countries/usa
 \
