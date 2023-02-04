@@ -111,7 +111,7 @@ datapoint:
 | ------------------------ | ------------- |
 | **Query parameters**     | N/A           |
 | **Allowed HTTP methods** | `GET`, `HEAD` |
-| **Response**             | Information about the API's health: `uptime`, `runtime`, `message` and `timestamp`. If the API is healthy, you'll receive a `message: "OK"`. |
+| **Response**             | Information about the API's health: `uptime`, `responsetime`, `message` and `timestamp`. If the API is healthy, you'll receive a `message: "OK"`. |
 | **Response format**      | JSON          |
 
 <a name="examples"></a>
