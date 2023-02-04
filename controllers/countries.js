@@ -1,6 +1,19 @@
-import { getDataFromExternalApi } from '../services/index.js';
+import { allCountriesApi, countryApi } from '../services/index.js';
 import camelCase from 'lodash.camelcase';
 import * as MESSAGES from '../constants/messages.js';
+
+const summarize = (apiResponse) => {
+  const summary = {};
+  const datapoints = ['cases', 'todayCases', 'deaths', 'todayDeaths'];
+
+  for (const datapoint of datapoints) {
+    summary[datapoint] =
+      apiResponse.data[datapoint] === undefined
+        ? null
+        : apiResponse.data[datapoint];
+  }
+  return summary;
+};
 
 const respondWith500 = (res) => {
   res.status(500).json({
@@ -8,21 +21,22 @@ const respondWith500 = (res) => {
   });
 };
 
-export const getCountriesData = async (req, res) => {
+export const getCountries = async (req, res) => {
   try {
-    const apiResponse = await getDataFromExternalApi();
+    const apiResponse = await allCountriesApi();
 
-    // Service unavailable if external API returns any errors
+    // Internal server error if external API returns any errors
     if (apiResponse.statusCode !== 200) {
       return respondWith500(res);
     }
-    return res.json(apiResponse.data);
+
+    return res.json(summarize(apiResponse));
   } catch {
     return respondWith500(res);
   }
 };
 
-export const getCountryData = async (req, res) => {
+export const getCountry = async (req, res) => {
   try {
     const { country } = req.params;
 
@@ -34,7 +48,7 @@ export const getCountryData = async (req, res) => {
       ])
     );
 
-    const apiResponse = await getDataFromExternalApi(country);
+    const apiResponse = await countryApi(country);
 
     // External API cannot find country
     if (apiResponse.statusCode === 404) {
@@ -46,7 +60,11 @@ export const getCountryData = async (req, res) => {
 
     // No query parameters
     if (!Object.keys(queryParams).length) {
-      return res.json(apiResponse.data);
+      const allDatapoints = {
+        country: apiResponse.data.country,
+        ...summarize(apiResponse),
+      };
+      return res.json(allDatapoints);
     }
 
     // Invalid query: query parameter key is not 'datapoint' or more than 1 query parameter

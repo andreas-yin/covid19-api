@@ -1,8 +1,15 @@
 # COVID-19 API
 
-This API provides the latest information on COVID-19 cases. You can query the API by country.
+This API provides a summary of COVID-19 cases. The summary contains 4 datapoints:
+
+1. Cases
+2. Today's cases
+3. Deaths
+4. Today's deaths
+
+You can query the API by country.
 \
-**Source:** It retrieves the information from another public API - [disease.sh](https://disease.sh/)
+**Source:** It retrieves the latest COVID-19 data from another public API - [disease.sh](https://disease.sh/)
 
 ### Table of Contents
 
@@ -68,12 +75,12 @@ The endpoints follow the REST standard.
 
 ### `/countries`
 
-|                          |                                           |
-| ------------------------ | ----------------------------------------- |
-| **Query parameters**     | N/A                                       |
-| **Allowed HTTP methods** | `GET`, `HEAD`                             |
-| **Response**             | COVID-19 cases for all countries from A-Z |
-| **Response format**      | JSON                                      |
+|                          |                                     |
+| ------------------------ | ----------------------------------- |
+| **Query parameters**     | N/A                                 |
+| **Allowed HTTP methods** | `GET`, `HEAD`                       |
+| **Response**             | Summary of COVID-19 cases worldwide |
+| **Response format**      | JSON                                |
 
 ### `/countries/{country}`
 
@@ -83,7 +90,7 @@ The endpoints follow the REST standard.
 | **Dynamic path** | `{country}` specifies a country. Acceptable strings:<br>1. **Full country name**, e.g. `Germany`<br>2. **ISO 2-digit country code**, e.g. `de` for Germany<br>3. **ISO 3-digit country code**, e.g. `deu` for Germany<br>`{country}` is treated as case-insensitive. |
 | **Query parameters**     | Only 1 query parameter of `datapoint: string` allowed.<br>The key `datapoint` is treated as case-insensitive.<br>Only certain strings accepted as a value for `datapoint` (e.g. `todayCases` or `todayDeaths`).<br>The value string for `datapoint` has to be in camel, Pascal, snake or kebap case or use spaces between words.<br> |
 | **Allowed HTTP methods** | `GET`, `HEAD`                                                           |
-| **Response**             | COVID-19 cases (or one single datapoint thereof) for a specific country |
+| **Response**             | Summary of COVID-19 cases (or one single datapoint thereof) for a specific country |
 | **Response format**      | JSON                                                                    |
 | **Common errors**        | The **country can't be found** or there is no data available for this country (HTTP 404). Please use an ISO country code instead and try again.<br>The value for datapoint is in lowercase, so the **datapoint can't be found** (HTTP 404). Please use camel, Pascal, snake or kebap case or spaces between words and try again. |
 
@@ -95,22 +102,6 @@ datapoint:
 | "todayCases"
 | "deaths"
 | "todayDeaths"
-| "recovered"
-| "todayRecovered"
-| "active"
-| "critical"
-| "casesPerOneMillion"
-| "deathsPerOneMillion"
-| "tests"
-| "testsPerOneMillion"
-| "population"
-| "continent"
-| "oneCasePerPeople"
-| "oneDeathPerPeople"
-| "oneTestPerPeople"
-| "activePerOneMillion"
-| "recoveredPerOneMillion"
-| "criticalPerOneMillion"
 ```
 
 ### `/healthcheck`
@@ -129,12 +120,12 @@ datapoint:
 
 `GET` http://localhost:3000/dev/countries
 \
-returns the COVID-19 cases for all countries from A-Z.
+returns a summary of the COVID-19 cases worldwide.
 \
 \
 `GET` http://localhost:3000/dev/countries/swe
 \
-returns the COVID-19 cases for Sweden.
+returns a summary of the COVID-19 cases for Sweden.
 \
 \
 `GET` http://localhost:3000/dev/countries/japan?datapoint=today-deaths
