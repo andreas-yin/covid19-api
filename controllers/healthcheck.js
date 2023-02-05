@@ -6,5 +6,5 @@ export const getHealthcheck = async (req, res, next) => {
     timestamp: Date.now(),
   };
 
-  res.status(200).json(healthcheck);
+  res.json(healthcheck);
 };
