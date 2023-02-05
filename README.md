@@ -41,7 +41,6 @@ The API depends on the following packages:
 | [prettier](https://www.npmjs.com/package/prettier) | 2.8.3 |
 | [eslint](https://www.npmjs.com/package/eslint) | 8.33.0 |
 | [jest](https://www.npmjs.com/package/jest) | 29.4.1 |
-| [supertest](https://www.npmjs.com/package/supertest) | 6.3.3 |
 
 Open your Terminal, make sure you are in the project folder of this application and enter the below command to install the above packages:
 

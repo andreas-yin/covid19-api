@@ -15,17 +15,19 @@ const summarize = (apiResponse) => {
   return summary;
 };
 
-export const getCountries = async (req, res) => {
+export const createGetCountries = (allCountriesApi) => async (req, res) => {
   const apiResponse = await allCountriesApi();
 
   // If we receive any error from the external API
   if (apiResponse.statusCode !== 200) {
     return res.status(500).json({ message: MESSAGES.INTERNAL_SERVER_ERROR });
   }
-  return res.json(summarize(apiResponse));
+  return res.status(200).json(summarize(apiResponse));
 };
 
-export const getCountry = async (req, res) => {
+export const getCountries = createGetCountries(allCountriesApi);
+
+export const createGetCountry = (countryApi) => async (req, res) => {
   const { country } = req.params;
 
   // Covert all query parameter keys to lowercase
@@ -51,7 +53,7 @@ export const getCountry = async (req, res) => {
       country: apiResponse.data.country,
       ...summary,
     };
-    return res.json(summaryIncludingCountry);
+    return res.status(200).json(summaryIncludingCountry);
   }
 
   // Invalid query: query parameter key is not 'datapoint' or more than 1 query parameter
@@ -66,7 +68,9 @@ export const getCountry = async (req, res) => {
     return res.status(404).json({ message: MESSAGES.DATAPOINT_NOT_FOUND });
   }
 
-  return res.json({
+  return res.status(200).json({
     [camelCasedDatapoint]: apiResponse.data[camelCasedDatapoint],
   });
 };
+
+export const getCountry = createGetCountry(countryApi);
