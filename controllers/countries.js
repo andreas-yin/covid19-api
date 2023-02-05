@@ -66,5 +66,7 @@ export const getCountry = async (req, res) => {
     return res.status(404).json({ message: MESSAGES.DATAPOINT_NOT_FOUND });
   }
 
-  res.json({ [camelCasedDatapoint]: apiResponse.data[camelCasedDatapoint] });
+  return res.json({
+    [camelCasedDatapoint]: apiResponse.data[camelCasedDatapoint],
+  });
 };
