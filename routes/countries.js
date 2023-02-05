@@ -13,5 +13,5 @@ countriesRouter.route('/').get(getCountries).all(methodNotAllowed);
 // GET requests to retrieve COVID summary for a specific country and any requests other than GET
 countriesRouter.route('/:country').get(getCountry).all(methodNotAllowed);
 
-// If any error occurs during the above, return 500 HTTP error
+// If any error occurs during the above, return HTTP 500 error
 countriesRouter.use(internalServerError);

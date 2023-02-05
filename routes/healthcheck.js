@@ -13,5 +13,5 @@ healthcheckRouter.get('/', getHealthcheck);
 // Any requests other than GET
 healthcheckRouter.all('/', methodNotAllowed);
 
-// If any error occurs during the above, return 500 HTTP error
+// If any error occurs during the above, return HTTP 500 error
 healthcheckRouter.use(internalServerError);
