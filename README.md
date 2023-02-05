@@ -40,6 +40,8 @@ The API depends on the following packages:
 | [serverless-offline](https://www.npmjs.com/package/serverless-offline) | 12.0.4 |
 | [prettier](https://www.npmjs.com/package/prettier) | 2.8.3 |
 | [eslint](https://www.npmjs.com/package/eslint) | 8.33.0 |
+| [jest](https://www.npmjs.com/package/jest) | 29.4.1 |
+| [supertest](https://www.npmjs.com/package/supertest) | 6.3.3 |
 
 Open your Terminal, make sure you are in the project folder of this application and enter the below command to install the above packages:
 
@@ -52,7 +54,7 @@ npm install
 To run the application locally, enter the following command in your Terminal:
 
 ```
-npm run start
+npm start
 ```
 
 This makes use of the Serverless Offline plugin, which emulates AWS Lambda and API Gateway on your local machine. The Lambda function is now running on your localhost. The default port is 3000.
