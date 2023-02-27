@@ -202,6 +202,8 @@ returns a 405 HTTP response (Method Not Allowed).
 
 ## Use the API Hosted on AWS Lambda
 
+**UPDATE: SERVICE NO LONGER AVAILABLE ON AWS LAMBDA**
+\
 This API has been deployed to AWS Lambda. To use the service, replace http://localhost:3000/dev with the following **base URL**:
 
 ```
